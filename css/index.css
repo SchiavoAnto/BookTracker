@@ -63,7 +63,7 @@ h1 {
     top: 25%;
     height: 50%;
     aspect-ratio: 1;
-    background-image: url("/icons/search.svg");
+    background-image: url("../icons/search.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -75,7 +75,7 @@ h1 {
     width: 2rem;
     height: 2rem;
     margin: 0;
-    background-image: url("/icons/filter.svg");
+    background-image: url("../icons/filter.svg");
     background-repeat: no-repeat;
     background-size: 80%;
     background-position: center;
@@ -241,7 +241,7 @@ h1 {
     aspect-ratio: 1;
     position: absolute;
     right: 125%;
-    background-image: url("/icons/star-filled.svg");
+    background-image: url("../icons/star-filled.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
