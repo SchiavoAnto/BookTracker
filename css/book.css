@@ -1,0 +1,59 @@
+#delete-button {
+    color: #ff453a;
+    background: none;
+}
+
+#title {
+    word-break: break-all;
+}
+
+#container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-block: 1rem;
+    gap: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 0.8rem;
+}
+
+label {
+    margin-bottom: 0.35rem;
+}
+
+#rating-input {
+    width: 65%;
+    max-width: 300px;
+    margin-inline: auto;
+}
+
+#info-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.65rem;
+}
+
+#cover-preview {
+    background-color: lightgray;
+    border-radius: 0.75rem;
+    height: 16rem;
+    display: block;
+}
+
+#isbn-text {
+    opacity: 0.4;
+    font-family: monospace;
+    font-size: 0.7rem;
+    user-select: text;
+    -webkit-user-select: text;
+}

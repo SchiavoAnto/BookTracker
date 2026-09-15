@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <title>Aggiungi libro</title>
+    <link rel="apple-touch-icon" sizes="96x96" href="icons/logo-96.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/logo-120.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icons/logo-128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/logo-152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/logo-192.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/logo-256.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/logo-512.png">
+    <link rel="icon" sizes="96x96" href="icons/logo-96.png">
+    <link rel="icon" sizes="120x120" href="icons/logo-120.png">
+    <link rel="icon" sizes="128x128" href="icons/logo-128.png">
+    <link rel="icon" sizes="152x152" href="icons/logo-152.png">
+    <link rel="icon" sizes="192x192" href="icons/logo-192.png">
+    <link rel="icon" sizes="256x256" href="icons/logo-256.png">
+    <link rel="icon" sizes="512x512" href="icons/logo-512.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/add.css">
+    <link rel="manifest" href="manifest.json" type="application/manifest+json">
+    <script type="module" src="js/rating-bar.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <div id="header">
+        <button id="back-button"></button>
+        <p id="page-title-header">Aggiungi libro</p>
+        <button id="done-button" class="header-button">Fine</button>
+    </div>
+    <h1 id="page-title">Aggiungi libro</h1>
+    <form id="form">
+        <label for="cover-preview">Anteprima copertina 
+            <span class="info-indicator" onclick="alert(`Verrà effettuato un tentativo per recuperare la copertina in automatico. In caso non venga trovata, si può cliccare l'anteprima per scegliere o scattare una foto.`)"></span>
+        </label>
+        <div id="cover-container">
+            <img id="cover-preview" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Book cover" onclick="pickCoverFile()">
+            <div id="loading-spinner" hidden></div>
+            <input type="file" id="cover-input" accept="image/*" hidden>
+        </div>
+
+        <label for="isbn-input">ISBN <span class="required-indicator">*</span></label>
+        <input type="text" id="isbn-input" placeholder="ISBN" required>
+
+        <label for="title-input">Titolo <span class="required-indicator">*</span></label>
+        <input type="text" id="title-input" placeholder="Titolo" required>
+
+        <label for="author-input">Autore <span class="required-indicator">*</span></label>
+        <input type="text" id="author-input" placeholder="Autore" required>
+
+        <label for="publisher-input">Casa editrice</label>
+        <input type="text" id="publisher-input" placeholder="Casa editrice">
+
+        <label for="page-count-input">Numero di pagine <span class="required-indicator">*</span></label>
+        <input type="number" id="page-count-input" min="1" placeholder="Numero di pagine" required>
+
+        <label for="genre-input">Genere</label>
+        <input type="text" id="genre-input" placeholder="Genere">
+
+        <label for="current-page-input">Pagina corrente</label>
+        <input type="number" id="current-page-input" min="0" placeholder="Pagina corrente">
+
+        <label for="start-date-input">Data di inizio lettura</label>
+        <input type="date" id="start-date-input" placeholder="Data di inizio lettura">
+
+        <label for="end-date-input">Data di fine lettura</label>
+        <input type="date" id="end-date-input" placeholder="Data di fine lettura">
+
+        <label for="rating-input">Valutazione</label>
+        <rating-bar id="rating-input"></rating-bar>
+
+        <label for="notes-input">Note</label>
+        <textarea id="notes-input" placeholder="Note..."></textarea>
+    </form>
+    
+    <script src="js/add.js"></script>
+</body>
+</html>

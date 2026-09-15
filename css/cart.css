@@ -1,0 +1,90 @@
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+form > #sided {
+    display: flex;
+    justify-content: flex-end;
+}
+
+form > h4 {
+    margin: 0;
+    margin-bottom: 0.4rem;
+}
+
+.combined {
+    display: grid;
+    grid-template-columns: calc(60% - 0.125rem) calc(40% - 0.125rem);
+    width: 100%;
+    gap: 0.25rem;
+}
+
+.combined > * {
+    margin: 0;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem;
+    padding: 0.75rem 0 0.75rem 0.5rem;
+    border-top: 1px solid var(--item-border-color);
+}
+
+.item:first-of-type {
+    border-top: none;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.item:last-of-type {
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.info > * {
+    margin: 0;
+}
+
+/* TODO: Implement swipe to delete like iOS lists */
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 0.25rem;
+    border-left: 1px solid var(--item-border-color);
+}
+
+.delete-button {
+    color: #ff453a;
+    background: none;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --item-border-color: #ccc;
+    }
+    
+    .item {
+        background-color: #ececec;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --item-border-color: #444;
+    }
+    
+    .item {
+        background-color: #101010;
+    }
+}

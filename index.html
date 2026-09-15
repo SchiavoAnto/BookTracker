@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <title>BookTracker</title>
+    <link rel="apple-touch-icon" sizes="96x96" href="icons/logo-96.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/logo-120.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icons/logo-128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/logo-152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/logo-192.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/logo-256.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/logo-512.png">
+    <link rel="icon" sizes="96x96" href="icons/logo-96.png">
+    <link rel="icon" sizes="120x120" href="icons/logo-120.png">
+    <link rel="icon" sizes="128x128" href="icons/logo-128.png">
+    <link rel="icon" sizes="152x152" href="icons/logo-152.png">
+    <link rel="icon" sizes="192x192" href="icons/logo-192.png">
+    <link rel="icon" sizes="256x256" href="icons/logo-256.png">
+    <link rel="icon" sizes="512x512" href="icons/logo-512.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="manifest" href="manifest.json" type="application/manifest+json">
+    <script src="js/database.js"></script>
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <div id="header">
+        <h1>BookTracker</h1>
+        <button id="basket-button" onclick="window.location.replace('cart.html')"></button>
+    </div>
+    <div id="search-container">
+        <div id="search-bar-parent">
+            <input type="text" id="search-bar" placeholder="Cerca">
+        </div>
+        <input type="checkbox" id="search-filters-checkbox">
+    </div>
+    <div id="sort-filter-container">
+        <div id="sorting-container">
+            <label for="sorting-input">Ordina per:</label>
+            <select id="sorting-input">
+                <option value="title-asc">Titolo (A-Z)</option>
+                <option value="title-desc">Titolo (Z-A)</option>
+                <option value="author-asc">Autore (A-Z)</option>
+                <option value="author-desc">Autore (Z-A)</option>
+                <option value="rating-asc">Valutazione (0.5-5)</option>
+                <option value="rating-desc">Valutazione (5-0.5)</option>
+                <option value="start-date-asc">Data di inizio lettura (da più recente)</option>
+                <option value="start-date-desc">Data di inizio lettura (da meno recente)</option>
+                <option value="end-date-asc">Data di fine lettura (da più recente)</option>
+                <option value="end-date-desc">Data di fine lettura (da meno recente)</option>
+            </select>
+        </div>
+        <div id="filter-container">
+            <input type="checkbox" id="read-filter-checkbox" checked>
+            <label for="read-filter-checkbox">Mostra letti</label>
+        </div>
+    </div>
+    <div id="container">
+        <div id="books-grid"></div>
+    </div>
+    <button id="add-button" onclick="window.location.replace('add.html')"></button>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("worker.js").then(
+                (registration) => {
+                    console.log("Service worker registration successful:", registration);
+                },
+                (error) => {
+                    console.error("Service worker registration failed:", error);
+                }
+            );
+        } else {
+            console.error("Service workers are not supported on this browser.");
+            alert("Your browser is too old for this web app to work offline. Please update it.");
+        }
+    </script>
+    <script src="js/index.js"></script>
+</body>
+</html>

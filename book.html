@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <title>Dettagli del libro</title>
+    <link rel="apple-touch-icon" sizes="96x96" href="icons/logo-96.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/logo-120.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icons/logo-128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/logo-152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/logo-192.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/logo-256.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/logo-512.png">
+    <link rel="icon" sizes="96x96" href="icons/logo-96.png">
+    <link rel="icon" sizes="120x120" href="icons/logo-120.png">
+    <link rel="icon" sizes="128x128" href="icons/logo-128.png">
+    <link rel="icon" sizes="152x152" href="icons/logo-152.png">
+    <link rel="icon" sizes="192x192" href="icons/logo-192.png">
+    <link rel="icon" sizes="256x256" href="icons/logo-256.png">
+    <link rel="icon" sizes="512x512" href="icons/logo-512.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/book.css">
+    <link rel="manifest" href="manifest.json" type="application/manifest+json">
+    <script type="module" src="js/rating-bar.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <div id="header">
+        <button id="save-button" class="header-button">Salva</button>
+        <p id="page-title-header"></p>
+        <button id="delete-button">Elimina</button>
+    </div>
+    <h1 id="page-title"></h1>
+    
+    <div id="container">
+        <div id="info-grid">
+            <img id="cover-preview" src="">
+            <div id="info-container">
+                <h3 id="author-text"></h3>
+                <h4 id="publisher-text"></h4>
+                <p id="page-count-text"></p>
+                <p id="genre-text"></p>
+                <p id="isbn-text"></p>
+            </div>
+        </div>
+        <form>
+            <label for="current-page-input">Pagina corrente</label>
+            <input type="number" id="current-page-input" min="0" placeholder="Pagina corrente">
+
+            <label for="start-date-input">Data di inizio lettura</label>
+            <input type="date" id="start-date-input" placeholder="Data di inizio lettura">
+
+            <label for="end-date-input">Data di fine lettura</label>
+            <input type="date" id="end-date-input" placeholder="Data di fine lettura">
+
+            <label for="rating-input">Valutazione</label>
+            <rating-bar id="rating-input"></rating-bar>
+
+            <label for="notes-input">Note</label>
+            <textarea id="notes-input" placeholder="Note..."></textarea>
+        </form>
+    </div>
+    
+    <script src="js/book.js"></script>
+</body>
+</html>
