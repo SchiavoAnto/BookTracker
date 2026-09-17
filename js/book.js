@@ -64,6 +64,7 @@ notesInput.addEventListener("input", () => {
         isbnTextEl.textContent = book.isbn;
         
         currentPageInput.value = book.currentPage;
+        currentPageInput.setAttribute("max", book.pageCount);
         startDateInput.value = book.readingStartedDate;
         endDateInput.value = book.readingEndedDate;
         ratingInput.setAttribute("value", book.rating);
