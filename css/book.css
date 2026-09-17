@@ -47,7 +47,8 @@ label {
 #cover-preview {
     background-color: lightgray;
     border-radius: 0.75rem;
-    height: 16rem;
+    width: 10rem;
+    aspect-ratio: 1 / 1.46;
     display: block;
 }
 
