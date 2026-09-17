@@ -61,14 +61,16 @@ function displayBooks() {
             if (readFilterCheckbox.checked) {
                 return true;
             } else {
-                if (!elem.readingEndedDate) return true;
-                const bookDate = new Date(elem.readingEndedDate);
-                const now = new Date();
-                let read = bookDate > now;
-                if (!read) {
-                    read = elem.currentPage >= elem.pageCount;
+                let hasToBeShown = false;
+                if (elem.readingEndedDate) {
+                    const bookDate = new Date(elem.readingEndedDate);
+                    const now = new Date();
+                    hasToBeShown = now < bookDate;
                 }
-                return read;
+                if (hasToBeShown) {
+                    hasToBeShown = elem.currentPage < elem.pageCount;
+                }
+                return hasToBeShown;
             }
         }).toSorted(sortFn);
 
