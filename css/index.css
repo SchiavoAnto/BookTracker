@@ -40,6 +40,13 @@ h1 {
     background-position: 50% 50%;
 }
 
+#version-text {
+    position: fixed;
+    left: 0.25rem;
+    bottom: 0.25rem;
+    font-size: 0.75rem;
+}
+
 #search-bar,
 #sorting-input {
     width: 100%;
@@ -256,6 +263,10 @@ h1 {
     #search-filters-checkbox:checked {
         background-color: #ececec;
     }
+
+    #version-text {
+        color: #ddd;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -266,5 +277,9 @@ h1 {
 
     #search-filters-checkbox:checked {
         background-color: #101010;
+    }
+
+    #version-text {
+        color: #444;
     }
 }
