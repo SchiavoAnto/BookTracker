@@ -61,10 +61,16 @@ function displayBooks() {
             if (readFilterCheckbox.checked) {
                 return true;
             } else {
-                if (!elem.readingEndedDate) return true;
-                const bookDate = new Date(elem.readingEndedDate);
-                const now = new Date();
-                return bookDate > now;
+                let hasToBeShown = false;
+                if (elem.readingEndedDate) {
+                    const bookDate = new Date(elem.readingEndedDate);
+                    const now = new Date();
+                    hasToBeShown = now < bookDate;
+                }
+                if (hasToBeShown) {
+                    hasToBeShown = elem.currentPage < elem.pageCount;
+                }
+                return hasToBeShown;
             }
         }).toSorted(sortFn);
 
@@ -95,7 +101,8 @@ function displayBooks() {
     });
 }
 
-sortingInput.addEventListener("change", () => {
+sortingInput.addEventListener("change", (e) => {
+    window.localStorage.setItem("sorting-value", e.target.value);
     displayBooks();
 });
 
@@ -111,8 +118,19 @@ searchFiltersCheckbox.addEventListener("change", (e) => {
     }
 });
 
-readFilterCheckbox.addEventListener("change", () => {
+readFilterCheckbox.addEventListener("change", (e) => {
+    window.localStorage.setItem("show-read-value", e.target.checked);
     displayBooks();
 });
 
-displayBooks();
+(() => {
+    const savedFilter = localStorage.getItem("sorting-value") ?? "title-asc";
+    const option = document.querySelector(`#sorting-input > option[value='${savedFilter}']`);
+    option.setAttribute("selected", "");
+
+    const savedShowRead = localStorage.getItem("show-read-value") === "true";
+    if (savedShowRead)
+        readFilterCheckbox.setAttribute("checked", "");
+
+    displayBooks();
+})();

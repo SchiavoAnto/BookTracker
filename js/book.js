@@ -7,6 +7,7 @@ const deleteButton = document.getElementById("delete-button");
 const titleEl = document.getElementById("page-title");
 pageTitleHeaderEl = document.getElementById("page-title-header");
 const coverPreviewEl = document.getElementById("cover-preview");
+const coverInput = document.getElementById("cover-input");
 const authorTextEl = document.getElementById("author-text");
 const publisherTextEl = document.getElementById("publisher-text");
 const pageCountTextEl = document.getElementById("page-count-text");
@@ -35,6 +36,17 @@ deleteButton.addEventListener("click", () => {
     window.location.replace("index.html");
 });
 
+coverPreviewEl.addEventListener("click", () => {
+    coverInput.click();
+});
+coverInput.addEventListener("change", () => {
+    const reader = new FileReader();
+    reader.onload = () => {
+        coverPreviewEl.setAttribute("src", reader.result);
+        book.cover = reader.result;
+    };
+    reader.readAsDataURL(coverInput.files[0]);
+});
 currentPageInput.addEventListener("input", () => {
     book.currentPage = parseInt(currentPageInput.value);
 });
@@ -64,6 +76,7 @@ notesInput.addEventListener("input", () => {
         isbnTextEl.textContent = book.isbn;
         
         currentPageInput.value = book.currentPage;
+        currentPageInput.setAttribute("max", book.pageCount);
         startDateInput.value = book.readingStartedDate;
         endDateInput.value = book.readingEndedDate;
         ratingInput.setAttribute("value", book.rating);
