@@ -99,7 +99,8 @@ function displayBooks() {
     });
 }
 
-sortingInput.addEventListener("change", () => {
+sortingInput.addEventListener("change", (e) => {
+    window.localStorage.setItem("sorting-value", e.target.value);
     displayBooks();
 });
 
@@ -115,8 +116,19 @@ searchFiltersCheckbox.addEventListener("change", (e) => {
     }
 });
 
-readFilterCheckbox.addEventListener("change", () => {
+readFilterCheckbox.addEventListener("change", (e) => {
+    window.localStorage.setItem("show-read-value", e.target.checked);
     displayBooks();
 });
 
-displayBooks();
+(() => {
+    const savedFilter = localStorage.getItem("sorting-value") ?? "title-asc";
+    const option = document.querySelector(`#sorting-input > option[value='${savedFilter}']`);
+    option.setAttribute("selected", "");
+
+    const savedShowRead = localStorage.getItem("show-read-value") === "true";
+    if (savedShowRead)
+        readFilterCheckbox.setAttribute("checked", "");
+
+    displayBooks();
+})();
