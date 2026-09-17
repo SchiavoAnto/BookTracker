@@ -64,7 +64,11 @@ function displayBooks() {
                 if (!elem.readingEndedDate) return true;
                 const bookDate = new Date(elem.readingEndedDate);
                 const now = new Date();
-                return bookDate > now;
+                let read = bookDate > now;
+                if (!read) {
+                    read = elem.currentPage >= elem.pageCount;
+                }
+                return read;
             }
         }).toSorted(sortFn);
 
