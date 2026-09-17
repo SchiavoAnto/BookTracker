@@ -52,16 +52,19 @@
         <input type="text" id="title-input" placeholder="Titolo" required>
 
         <label for="author-input">Autore <span class="required-indicator">*</span></label>
-        <input type="text" id="author-input" placeholder="Autore" required>
+        <input type="text" id="author-input" list="author-datalist" autocomplete="off" placeholder="Autore" required>
+        <datalist id="author-datalist"></datalist>
 
         <label for="publisher-input">Casa editrice</label>
-        <input type="text" id="publisher-input" placeholder="Casa editrice">
+        <input type="text" id="publisher-input" list="publisher-datalist" placeholder="Casa editrice">
+        <datalist id="publisher-datalist"></datalist>
 
         <label for="page-count-input">Numero di pagine <span class="required-indicator">*</span></label>
         <input type="number" id="page-count-input" min="1" placeholder="Numero di pagine" required>
 
         <label for="genre-input">Genere</label>
-        <input type="text" id="genre-input" placeholder="Genere">
+        <input type="text" id="genre-input" list="genre-datalist" placeholder="Genere">
+        <datalist id="genre-datalist"></datalist>
 
         <label for="current-page-input">Pagina corrente</label>
         <input type="number" id="current-page-input" min="0" placeholder="Pagina corrente">

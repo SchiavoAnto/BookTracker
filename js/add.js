@@ -17,6 +17,10 @@ const endDateInput = document.getElementById("end-date-input");
 const ratingInput = document.getElementById("rating-input");
 const notesInput = document.getElementById("notes-input");
 
+const authorDatalist = document.getElementById("author-datalist");
+const publisherDatalist = document.getElementById("publisher-datalist");
+const genreDatalist = document.getElementById("genre-datalist");
+
 backButton.addEventListener("click", () => {
     if (needsBackConfirmation() &&
         !confirm("Vuoi davvero annullare le modifiche e tornare indietro?")) return;
@@ -98,5 +102,34 @@ function pickCoverFile() {
 (() => {
     pageCountInput.addEventListener("input", () => {
         currentPageInput.setAttribute("max", pageCountInput.value);
+    });
+
+    const authors = new Set();
+    const publishers = new Set();
+    const genres = new Set();
+    getBooks((book) => {
+        if (book.author)
+            authors.add(book.author);
+        if (book.publisher)
+            publishers.add(book.publisher);
+        if (book.genre)
+            genres.add(book.genre);
+    },
+    () => {
+        for (const author of authors) {
+            const item = document.createElement("option");
+            item.setAttribute("value", author);
+            authorDatalist.appendChild(item);
+        }
+        for (const publisher of publishers) {
+            const item = document.createElement("option");
+            item.setAttribute("value", publisher);
+            publisherDatalist.appendChild(item);
+        }
+        for (const genre of genres) {
+            const item = document.createElement("option");
+            item.setAttribute("value", genre);
+            genreDatalist.appendChild(item);
+        }
     });
 })();
