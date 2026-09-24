@@ -51,15 +51,44 @@ form.addEventListener("submit", (e) => {
 });
 
 isbnInput.addEventListener("change", async (e) => {
+    loadingSpinner.removeAttribute("hidden");
+    const isbnValue = e.target.value.trim();
+
+    const dataResponse = await fetch(`https://openlibrary.org/isbn/${isbnValue}.json`);
+    let authorUrl = null;
+    if (dataResponse.status == 200) {
+        const jsonData = await dataResponse.json();
+        if (jsonData.title)
+            titleInput.value = jsonData.title;
+        if (jsonData.authors)
+            authorUrl = jsonData.authors[0].key;
+        if (jsonData.publishers)
+            publisherInput.value = jsonData.publishers[0];
+        if (jsonData.number_of_pages)
+            pageCountInput.value = jsonData.number_of_pages;
+    }
+
+    if (authorUrl) {
+        const authorResponse = await fetch(`https://openlibrary.org${authorUrl}.json`);
+        if (authorResponse.status == 200) {
+            const data = await authorResponse.json();
+            if (data.name)
+                authorInput.value = data.name;
+        }
+    }
+
     if (coverInput.files.length > 0) {
         // The user has manually selected a cover image so we don't override it.
+        loadingSpinner.setAttribute("hidden", "");
         return;
     }
-    // 9788853605054
-    loadingSpinner.removeAttribute("hidden");
-    const response = await fetch(`https://covers.openlibrary.org/b/isbn/${e.target.value.trim()}-M.jpg`);
-    const blob = await response.blob();
-    loadFileInCoverPreview(blob);
+    try {
+        const response = await fetch(`https://covers.openlibrary.org/b/isbn/${isbnValue}-M.jpg`);
+        const blob = await response.blob();
+        loadFileInCoverPreview(blob);
+    } finally {
+        loadingSpinner.setAttribute("hidden", "");
+    }
 });
 
 coverInput.addEventListener("change", () => {

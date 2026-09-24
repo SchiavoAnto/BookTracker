@@ -95,6 +95,17 @@ class RatingBar extends HTMLElement {
     }
 
     #updateRating(index, clickedState = undefined) {
+        if (index == 0) {
+            const clicked = this.#buttons[index];
+            const currentState = clicked.getAttribute("state");
+            if (currentState === "half") {
+                clicked.removeAttribute("state");
+                this.#computeRating();
+                this.dispatchEvent(new RatingBarChangeEvent(this.value));
+                return;
+            }
+        }
+
         if (index == this.#lastClickedButtonIdx) {
             const clicked = this.#buttons[index];
             const currentState = clicked.getAttribute("state");
